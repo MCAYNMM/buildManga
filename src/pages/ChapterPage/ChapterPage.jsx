@@ -112,7 +112,6 @@ const ChapterPage = () => {
     fetchListComment();
   }, []);
 
-
   const handleSeeMore = () => {
     setVisibleChapterCount((prevCount) => prevCount + 10);
   };
@@ -542,11 +541,11 @@ const ChapterPage = () => {
                           </strong>{" "}
                         </div>
                         <div className="flex flex-row gap-6">
-                          <input
-                            className="text-lg text-white bg-slate-500 h-32  w-full rounded-lg my-2"
+                          <textarea
+                            className="text-lg text-white bg-slate-500 h-20 block w-full rounded-lg my-2 overflow-auto resize-none"
                             value={comment}
                             onChange={(e) => commentOnchange(e)}
-                          ></input>
+                          ></textarea>
                           <button
                             className="bg-slate-500 rounded-lg m-2 w-[20%] text-white font-semibold"
                             onClick={() => handleSendComment()}

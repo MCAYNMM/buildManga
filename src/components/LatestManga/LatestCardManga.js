@@ -236,10 +236,7 @@ const LatestCardManga = ({
     : chapterLink.split("/");
   const chapterUrl2 = chapterUrl1[chapterUrl1.length - 1].split("-");
   const newChapter = chapterUrl1[chapterUrl1.length - 1];
-
-  const urlToManga = chapterLink.endsWith("/")
-    ? chapterLink.slice(0, -1).split("/")
-    : chapterLink.split("/");
+  console.log("chapterlink: ", chapterLink);
 
   const getChapterFromUrl2 = (url) => {
     const parts = url.split("/");
@@ -298,14 +295,14 @@ const LatestCardManga = ({
               </NavLink>
             </li>
           </ul>
-          <p className="hidden max-[600px]:block absolute bottom-0 text-sm whitespace-nowrap text-white bg-gray-900  p-2 rounded-lg">
+          <p className="hidden max-[600px]:inline-block max-[600px]:block mt-4 text-sm whitespace-nowrap text-white bg-gray-900  p-2 rounded-lg">
             Update: {update}
           </p>
         </div>
       </div>
       <div className="max-[600px]:hidden flex-shrink-0 flex flex-col">
         <div className="mt-auto">
-          <p className="text-sm text-white bg-gray-900 p-2 rounded-lg">
+          <p className="text-sm inline-block text-white bg-gray-900 p-2 rounded-lg">
             Update: {update}
           </p>
         </div>

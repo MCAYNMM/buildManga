@@ -8,3 +8,18 @@
         @apply w-[100px] font-semibold text-[14px] leading-[20px] md:w-[181px] md:text-[24px] md:leading-[32px]  text-white cursor-pointer text-center
     }
 }
+textarea::-webkit-scrollbar {
+    width: 8px;
+    /* Độ rộng của thanh cuộn */
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+    background: #555;
+
+}

@@ -19,6 +19,7 @@ import Top15Comics from "../components/top15Comics";
 import FreeComic from "../components/freeComic";
 import NewsComics from "../components/newsComics";
 import ToggleReadMode from "../components/ToggleBtn/ToggleReadMode";
+import PopularManga from "../components/PopularManga/PopularManga";
 import ContactUs from "./ContactUs";
 import CustomizeSpin from "../components/spin/CustomizeSpin";
 // import { Space, Spin } from "antd";
@@ -78,13 +79,14 @@ export default function Index() {
       </div>
       <CommingSoon></CommingSoon>
 
-      <div className="title-released-comic  max-[480px]:px-4">
+      {/* <div className="title-released-comic  max-[480px]:px-4">
         <div className="max-[480px]:!text-2xl  text-5xl max-[738px]:text-[34px] max-[480px]:relative text-white font-semibold">
           Top 15 Best Comics of the Week
           <div className="hidden max-[480px]:block w-[100px] h-[7px] bg-[#F45F17] -top-[40%] rounded-[35px] left-0 absolute "></div>
         </div>
-      </div>
-      <Top15Comics />
+      </div> */}
+      {/* <Top15Comics /> */}
+      {sv == 2 || sv == 12 || sv == 19 ? <PopularManga /> : ""}
 
       <div className="title-released-comic  max-[480px]:px-4">
         <div className="max-[480px]:!text-2xl  text-5xl max-[738px]:text-[34px] max-[480px]:relative text-white font-semibold">

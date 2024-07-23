@@ -3,13 +3,17 @@ import React, { useState } from "react";
 const CMT = (props) => {
   const { cmt, handleLikeCMT, handleRepComment, comment, commentOnchange } =
     props;
-
   const [viewReply, setViewReply] = useState(false);
   const handleReply = () => {
     setViewReply(!viewReply);
     console.log(viewReply);
   };
 
+  const [isExpanded, setIsExpanded] = useState(true);
+  const maxHeight = 100;
+  const isLong = cmt.content.length > maxHeight;
+  const truncate =
+    cmt.content.length > 100 && cmt.content.slice(0, 100) + "...";
   return (
     // <!-- component -->
     <div className=" mx-auto  mt-4 w-full">
@@ -17,7 +21,7 @@ const CMT = (props) => {
         <div className="flex">
           <div className="flex-shrink-0 mr-3">
             <img
-              className="mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10"
+              className={`mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10`}
               src={cmt?.avatar_user || ""}
               alt=""
             />
@@ -25,7 +29,17 @@ const CMT = (props) => {
           <div className="flex-1 border rounded-lg px-4 py-2 leading-relaxed">
             <strong className="text-white">{cmt?.name_user}</strong>{" "}
             <span className="text-xs text-white">{cmt?.time_comment}</span>
-            <p className="text-lg text-white">{cmt?.content}</p>
+            <p className={`text-lg text-white w-full overflow-hidden `}>
+              {isExpanded ? truncate : cmt?.content}
+            </p>
+            {isLong && (
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className=" bg-blue-500 text-white px-2 py-1 text-sm rounded"
+              >
+                {isExpanded ? "Show More" : "Show Less"}
+              </button>
+            )}
             <div className="mt-4 flex items-center gap-3">
               <div
                 className="text-sm text-white font-semibold"
@@ -75,11 +89,11 @@ const CMT = (props) => {
                 </strong>{" "}
               </div>
               <div className="flex flex-row gap-6">
-                <input
-                  className="text-lg text-white bg-slate-500 h-20  w-full rounded-lg my-2"
+                <textarea
+                  className="text-lg  text-white bg-slate-500 h-20 block w-full rounded-lg my-2 overflow-auto whitespace-normal"
                   value={comment}
                   onChange={(e) => commentOnchange(e)}
-                ></input>
+                ></textarea>
                 <button
                   className={`${
                     comment !== ""
