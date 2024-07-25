@@ -90,35 +90,33 @@ const LatestManga = () => {
         ) : (
           <div className="grid grid-cols-1 gap-4 mx-10">
             {newRelease &&
-              newRelease["list_manga"]
-                .slice(0, 4)
-                .map((item, index) => (
-                  <LatestCardManga
-                    key={index}
-                    poster={item?.image_poster_link_goc}
-                    title={item?.title_manga}
-                    rate={item?.rate}
-                    update={item.time_release}
-                    chapter={item.chapter_new || item.chaper_new}
-                    chapterLink={item.url_chapter}
-                    path_segment={
-                      item?.path_segment_manga
-                        ? item?.path_segment_manga
-                        : (item?.url_manga && sv === 4) ||
-                          sv === 9 ||
-                          sv === 11 ||
-                          sv === 12
-                        ? item?.url_manga.replace(
-                            "https://apimanga.mangasocial.online/rnovel/",
-                            ""
-                          )
-                        : item?.url_manga.replace(
-                            "https://apimanga.mangasocial.online/rmanga/",
-                            ""
-                          )
-                    }
-                  />
-                ))}
+              newRelease["list_manga"].map((item, index) => (
+                <LatestCardManga
+                  key={index}
+                  poster={item?.image_poster_link_goc}
+                  title={item?.title_manga}
+                  rate={item?.rate}
+                  update={item.time_release}
+                  chapter={item.chapter_new || item.chaper_new}
+                  chapterLink={item.url_chapter}
+                  path_segment={
+                    item?.path_segment_manga
+                      ? item?.path_segment_manga
+                      : (item?.url_manga && sv === 4) ||
+                        sv === 9 ||
+                        sv === 11 ||
+                        sv === 12
+                      ? item?.url_manga.replace(
+                          "https://apimanga.mangasocial.online/rnovel/",
+                          ""
+                        )
+                      : item?.url_manga.replace(
+                          "https://apimanga.mangasocial.online/rmanga/",
+                          ""
+                        )
+                  }
+                />
+              ))}
           </div>
         )
       ) : loading ? (
@@ -131,26 +129,34 @@ const LatestManga = () => {
         />
       ) : (
         <div className="grid grid-cols-1 gap-4 mx-10">
-          {newRelease["list_manga"] &&
-            newRelease["list_manga"]
-              .slice(0, 4)
-              .map((item, index) => (
-                <LatestCardManga
-                  key={index}
-                  poster={item?.image_poster_link_goc || item?.poster_novel}
-                  title={item?.title_manga || item?.title_novel}
-                  rate={item?.rate || item?.time_update}
-                  update={item.time_release || item?.time_update}
-                  chapter={item.chapter_new || item?.title_chapter}
-                  chapterLink={item.url_chapter || item?.id_chapter}
-                  path_segment={
-                    item?.url_chapter
-                      ? getChapterFromUrl(item?.id_manga || item?.url_manga)
-                      : getChapterFromUrl2(item.link_server_novel)
-                  }
-                  url_manga={item["url_manga"]}
-                />
-              ))}
+          {newRelease &&
+            newRelease["list_manga"].map((item, index) => (
+              <LatestCardManga
+                key={index}
+                poster={item?.image_poster_link_goc}
+                title={item?.title_manga}
+                rate={item?.rate}
+                update={item.time_release}
+                chapter={item.chapter_new || item.chaper_new}
+                chapterLink={item.url_chapter}
+                path_segment={
+                  item?.path_segment_manga
+                    ? item?.path_segment_manga
+                    : (item?.url_manga && sv === 4) ||
+                      sv === 9 ||
+                      sv === 11 ||
+                      sv === 12
+                    ? item?.url_manga.replace(
+                        "https://apimanga.mangasocial.online/rnovel/",
+                        ""
+                      )
+                    : item?.url_manga.replace(
+                        "https://apimanga.mangasocial.online/rmanga/",
+                        ""
+                      )
+                }
+              />
+            ))}
         </div>
       )}
       <div className="flex mt-5 justify-center">

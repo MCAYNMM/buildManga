@@ -69,8 +69,9 @@ const ChapterPage = () => {
     try {
       if (readmode == false) {
         const response = await axios.get(
-          `https://apimanga.mangasocial.online/rmanga/${slug}`
+          `https://apimanga.mangasocial.online/web/rmanga/${sv}/${slug}`
         );
+        console.log("check res32", response.data);
         setChapterDetail(response.data);
         console.log(response.data);
         setListChapter(response.data.chapters);
@@ -89,6 +90,7 @@ const ChapterPage = () => {
           const response = await axios.get(
             `https://apimanga.mangasocial.online/web/rmanga/${sv}/${slug}/`
           );
+          console.log("check res3", response.data);
           setChapterDetail(response.data);
           setListChapter(response.data.chapters);
           setLoading(false);
@@ -136,14 +138,20 @@ const ChapterPage = () => {
   const linkList = arrChapterLink.map(function (link) {
     return listChapter[link];
   });
+  console.log("linkLIst", linkList);
 
   const getChapterFromUrl = (url) => {
     const parts = url.split("/");
     return parts[parts.length - 1];
   };
   const getChapterFromUrl2 = (url) => {
-    const parts = url.split("/");
-    return parts[parts.length - 2];
+    if (url.endsWith("/")) {
+      url = url.slice(0, -1);
+    }
+
+    const segments = url.split("/");
+    console.log(segments[segments.length - 1]);
+    return segments[segments.length - 1];
   };
 
   const viewsString = chapterDetail?.views || "";
@@ -315,7 +323,7 @@ const ChapterPage = () => {
                 }/${slug}/${
                   readmode
                     ? getChapterFromUrl2(linkList[0] ?? "")
-                    : getChapterFromUrl(linkList[0] ?? "")
+                    : getChapterFromUrl2(linkList[0] ?? "")
                 }`}
                 className=" hover:text-white p-[8px]  rounded-[12px] md:px-[52px] md:py-[26px]  bg-[#FF2020]  text-white md:rounded-[67px] "
               >
@@ -480,7 +488,7 @@ const ChapterPage = () => {
                         chapterName={
                           readmode
                             ? arrChapterLink[index]
-                            : getChapterFromUrl(item)
+                            : arrChapterLink[index]
                         }
                         title={
                           chapterDetail?.title || chapterDetail?.title_novel

@@ -22,6 +22,7 @@ const ReadChapter = () => {
   const [chapterDetail, setChapterDetail] = useState([]);
   const [listChapter, setListChapter] = useState([]);
   const [listNameChapter, setListNameChapter] = useState([]);
+  const [chapter, setChapter] = useState();
 
   const [chooseChapter, setChooseChapter] = useState("");
   const [loading, setLoading] = useState(true);
@@ -30,41 +31,46 @@ const ReadChapter = () => {
   const navigate = useNavigate();
 
   const fetchChapter = async () => {
+    // try {
+    //   setLoading(true);
+    //   console.log("sssssssssssssssdddddddddddd", slug, id);
+    //   const response = await axios.get(
+    //     `https://apimanga.mangasocial.online/rmanga/${slug}/${id}/`
+    //   );
+    //   setChapterDetail(response.data);
+    //   setLoading(false);
+    //   console.log("chapterDetail", chapterDetail);
+
+    // } catch (error) {
+    //   console.log("error", error);
+    // }
+
+    const url1 = `https://apimanga.mangasocial.online/rmanga/${slug}/${id}/`;
+    const url2 = `https://apimanga.mangasocial.online/web/rmanga/${sv}/${slug}/${id}/`;
+
     try {
-      if (readmode) {
-        const response = await axios.get(
-          `https://apimanga.mangasocial.online/web/rmanga/${sv}/${slug}/${id}`
-        );
+      const response = await axios.get(url1);
 
-        setChapterDetail(response.data);
-        setLoading(false);
-        // console.log(response.data);
-      } else {
-        const response = await axios.get(
-          `https://apimanga.mangasocial.online/rmanga/${slug}/${id}`
-        );
-
-        setChapterDetail(response.data);
-        console.log("chapterDetail", chapterDetail);
-        setLoading(false);
-        // console.log(response.data);
-      }
+      setChapterDetail(response.data);
+      setLoading(false);
+      console.log("chapterDetail", chapterDetail);
+      return response.data;
     } catch (error) {
-      console.log("error", error);
+      console.error(`Error fetching data from URL1: ${error.message}`);
+      try {
+        const response = await axios.get(url2);
+        setChapterDetail(response.data);
+        setLoading(false);
+        console.log("chapterDetail", chapterDetail);
+        return response.data;
+      } catch (error) {
+        console.error(`Error fetching data from URL2: ${error.message}`);
+        throw new Error("Unable to fetch data from both URLs");
+      }
     }
   };
+  console.log("read");
 
-  const downloadIMG = async (imgsrc, imgname) => {
-    const imgBlob = await fetch(imgsrc)
-      .then((res) => res.arrayBuffer())
-      .then((buffer) => new Blob([buffer], { type: "image/jpg" }));
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(imgBlob);
-    link.download = imgname;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
   const handleDownload = () => {
     console.log(chapterDetail.image_chapter.length);
     console.log(chapterDetail.image_chapter[0]);
@@ -82,24 +88,6 @@ const ReadChapter = () => {
     //     i*200
     //   )
     // }
-  };
-
-  const readFileAsDataURL = (blob) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result);
-      reader.onerror = reject;
-      reader.readAsDataURL(blob);
-    });
-  };
-
-  const download2PDF = async () => {
-    const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-    const { image_chapter, title, chapter_title } = chapterDetail;
-    const pdf = new jsPDF();
-    for (let i = 0; i < image_chapter.length; i++) {
-      const response = await fetch(proxyUrl + image_chapter[i]);
-    }
   };
 
   const handleDownloadHTML = () => {
@@ -240,41 +228,38 @@ const ReadChapter = () => {
   };
 
   useEffect(() => {
-    fetchListChapter();
-    fetchChapter();
-    // eslint-disable-next-line
-  }, [slug]);
-
-  useEffect(() => {
     fetchChapter();
     fetchListChapter();
     // eslint-disable-next-line
   }, [slug, id]);
 
   const handleChapter = (e) => {
-    if (readmode) {
-      let selectChapter = document.getElementById("chapterList");
-      let selectedChapter =
-        selectChapter.options[selectChapter.selectedIndex].value;
-
-      setChooseChapter(e.target.value);
-      const linkChapter = selectedChapter.replace(
-        `http://apimanga.mangasocial.online/web/rmanga/${sv}/${slug}/`,
-        ""
-      );
-      navigate(`/${sv}/chapter/${slug}/${linkChapter}`);
-    } else {
-      let selectChapter = document.getElementById("chapterList");
-      let selectedChapter =
-        selectChapter.options[selectChapter.selectedIndex].value;
-      console.log(selectedChapter);
-      setChooseChapter(e.target.value);
-      const linkChapter = selectedChapter.replace(
-        `http://apimanga.mangasocial.online/rmanga/${slug}/`,
-        ""
-      );
-      navigate(`/${sv}/chapter/${slug}/${linkChapter}`);
-    }
+    // if (readmode) {
+    //   let selectChapter = document.querySelectorAll("chapterList");
+    //   let selectedChapter =
+    //     selectChapter.options[selectChapter.selectedIndex].value;
+    //   setChooseChapter(e.target[0].value);
+    //   const linkChapter = selectedChapter.replace(
+    //     `http://apimanga.mangasocial.online/web/rmanga/${sv}/${slug}/`,
+    //     ""
+    //   );
+    //   navigate(`/${sv}/chapter/${slug}/${linkChapter}`);
+    // } else {
+    //   let selectChapter = document.getElementById("chapterList");
+    //   let selectedChapter =
+    //     selectChapter.options[selectChapter.selectedIndex].value;
+    //   console.log(selectedChapter);
+    //   setChooseChapter(e.target.value);
+    //   const linkChapter = selectedChapter.replace(
+    //     `http://apimanga.mangasocial.online/rmanga/${slug}/`,
+    //     ""
+    //   );
+    //   navigate(`/${sv}/chapter/${slug}/${linkChapter}`);
+    // }
+    const chapter = e.target.value;
+    setChapter(chapter);
+    console.log(chapter);
+    navigate(`/${sv}/chapter/${slug}/${chapter}`);
   };
 
   let currentChapter = listChapter.indexOf(id);
@@ -325,7 +310,31 @@ const ReadChapter = () => {
       alert("End of manga!!!");
     }
   };
-
+  // useEffect(() => {
+  //   if (readmode) {
+  //     // let selectChapter = document.querySelectorAll("chapterList");
+  //     // let selectedChapter =
+  //     //   selectChapter.options[selectChapter.selectedIndex].value;
+  //     CONS
+  //     setChooseChapter(e.target[0].value);
+  //     const linkChapter = selectedChapter.replace(
+  //       `http://apimanga.mangasocial.online/web/rmanga/${sv}/${slug}/`,
+  //       ""
+  //     );
+  //     navigate(`/${sv}/chapter/${slug}/${linkChapter}`);
+  //   } else {
+  //     let selectChapter = document.getElementById("chapterList");
+  //     let selectedChapter =
+  //       selectChapter.options[selectChapter.selectedIndex].value;
+  //     console.log(selectedChapter);
+  //     setChooseChapter(e.target.value);
+  //     const linkChapter = selectedChapter.replace(
+  //       `http://apimanga.mangasocial.online/rmanga/${slug}/`,
+  //       ""
+  //     );
+  //     navigate(`/${sv}/chapter/${slug}/${linkChapter}`);
+  //   }
+  // },[]);
   return (
     <div className="flex flex-col items-center gap-5  mt-5">
       <div className="flex flex-col container gap-5">
@@ -356,11 +365,13 @@ const ReadChapter = () => {
                 onChange={(e) => handleChapter(e)}
                 value={id}
               >
-                {listChapter?.map((item, index) => (
-                  <option key={index} value={item}>
-                    {listNameChapter[index]}
-                  </option>
-                ))}
+                {listChapter?.map((item, index) => {
+                  return (
+                    <option key={index} value={item}>
+                      {item}
+                    </option>
+                  );
+                })}
               </select>
             </div>
             <div>
@@ -398,6 +409,8 @@ const ReadChapter = () => {
             <div key={index}>
               <img
                 src={item}
+                data-src={item}
+                data-original={item}
                 alt=""
                 className="h-[100%] w-[100%] bg-cover object-cover mt-2 "
               />
@@ -413,11 +426,10 @@ const ReadChapter = () => {
             <select
               name="cars"
               id="chapterList"
-              className="w-[200px] max-[596px]:w-full h-[40px] px-3 rounded-lg"
-              onChange={() => handleChapter()}
+              className="min-[390px]:min-w-[350px] w-[200px] h-[40px] px-3 rounded-lg"
+              onChange={(e) => handleChapter(e)}
               value={id}
             >
-              <option>Select Chapter</option>
               {listChapter?.map((item, index) => (
                 <option key={index} value={item}>
                   {listNameChapter[index]}

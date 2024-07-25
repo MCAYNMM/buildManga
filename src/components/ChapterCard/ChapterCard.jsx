@@ -2,7 +2,24 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const ChapterCard = ({ chapter, title, poster, des, slug, chapterLink,chapterName, genre }) => {
+const ChapterCard = ({
+  chapter,
+  title,
+  poster,
+  des,
+  slug,
+  chapterLink,
+  chapterName,
+  genre,
+}) => {
+  console.log("chapters: ", chapter);
+  console.log("title: ", title);
+  console.log("poster: ", poster);
+  console.log("des: ", des);
+  console.log("slug: ", slug);
+  console.log("chapterLink: ", chapterLink);
+  console.log("chapterName: ", chapterName);
+  console.log("genre: ", genre);
   // console.log("check link", chapterLink);
   const sv = useSelector((state) => state.server.sv);
   const readmode = useSelector((state) => state.ReadMode.readmode);
@@ -11,14 +28,14 @@ const ChapterCard = ({ chapter, title, poster, des, slug, chapterLink,chapterNam
     `http://apimanga.mangasocial.online/rmanga/${slug}/`,
     ""
   );
-  const chapterNumberReadMode = chapterLink
+  const chapterNumberReadMode = chapterLink;
   // console.log("chapter",chapterLink);
-   const getChapterFromUrl = (url) => {
-    const parts = url.split('/');
+  const getChapterFromUrl = (url) => {
+    const parts = url.split("/");
     return parts[parts.length - 1];
-   };
-   const getChapterFromUrl2 = (url) => {
-    const parts = url.split('/');
+  };
+  const getChapterFromUrl2 = (url) => {
+    const parts = url.split("/");
     return parts[parts.length - 2];
   };
   // console.log("check slug", chapterLink)
@@ -26,19 +43,20 @@ const ChapterCard = ({ chapter, title, poster, des, slug, chapterLink,chapterNam
   const truncatedDes = des.length > 50 ? `${des.slice(0, 50)}...` : des;
   return (
     <>
-       <NavLink to={`/${sv}/${genre === "manga" ? "chapter" : "novel"}/${slug}/${readmode ?getChapterFromUrl2(chapterNumberReadMode) :getChapterFromUrl(chapterNumberReadMode)}`}>
+      <NavLink
+        to={`/${sv}/${genre === "manga" ? "chapter" : "novel"}/${slug}/${
+          readmode
+            ? getChapterFromUrl2(chapterNumberReadMode)
+            : getChapterFromUrl2(chapterNumberReadMode)
+        }`}
+      >
         <div className="flex md:flex-row items-center gap-4 md:gap-[80px] my-3  cursor-pointer py-4 md:py-8 px-2 md:px-12 transition-all duration-200">
           {/* chapter info */}
           <div className="flex items-center gap-4 md:gap-12 w-full md:w-auto">
-            <img
-              src={poster}
-              alt=""
-              className="h-24 md:h-[150px] w-24 md:w-[150px] object-cover rounded-xl"
-            />
             <div>
               <div className="text-base md:text-xl py-1 md:py-2 font-semibold whitespace-nowrap leading-5 md:leading-7 text-white">
                 <span className="underline decoration-1 whitespace-nowrap">
-                  { ` ${chapterName} `}
+                  {` ${chapterName} `}
                 </span>
               </div>
               <div className="text-sm md:text-base font-medium leading-5 md:leading-6 text-gray-400">

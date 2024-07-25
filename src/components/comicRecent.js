@@ -2,25 +2,32 @@ import React, { useState } from "react";
 import CardManga from "./cardManga";
 import useFetch from "../hooks/useFetch";
 import { useSelector } from "react-redux";
+import CardRecentManga from "./cardRecentManga";
 
 const ComicRecent = () => {
   const comicRecent = useFetch(1);
+  const [visibleCount, setVisibleCount] = useState(8);
   const [readMode, setReadMode] = useState(
     useSelector((state) => state.ReadMode.readmode)
   );
+  const handleShowMore = () => {
+    setVisibleCount((prevCount) => prevCount + 8);
+  };
   const sv = useSelector((state) => state.server.sv);
   // console.log(comicRecent);
-  const firstFiveItem = comicRecent.slice(0, 20);
+  const firstFiveItem = comicRecent.slice(0, 8);
+  console.log("sssssssssssssddddddđ", firstFiveItem);
   return (
     <>
       {readMode === false ? (
-        <div className="grid max-[768px]:grid-cols-4 max-[600px]:grid-cols-3 max-[962px]:grid-cols-6 max-[1126px]:grid-cols-7 min-[1126px]:grid-cols-8 2xl:grid-cols-10  mx-[60px]  gap-[20px] max-[435px]:gap-4 max-[435px]:pb-4 pb-[60px]">
-          {firstFiveItem.map((item, index) => (
-            <CardManga
+        <div className="grid grid-cols-2  max-[480px]:grid-cols-1 mx-[60px]  gap-[20px] max-[435px]:gap-4 max-[435px]:pb-4 pb-[60px]">
+          {comicRecent.slice(0, visibleCount).map((item, index) => (
+            <CardRecentManga
               key={index}
               poster={item?.image_poster_link_goc}
               title={item?.title_manga}
               rate={item?.rate}
+              categories={item?.categories}
               update={item.time_release}
               chapter={item.chapter_new || item?.chaper_new}
               chapterLink={item.url_chapter}
@@ -44,9 +51,9 @@ const ComicRecent = () => {
           ))}
         </div>
       ) : (
-        <div className="grid max-[768px]:grid-cols-3 md:grid-cols-5 2xl:grid-cols-7  gap-[20px] px-[60px] max-[435px]:px-4 max-[435px]:gap-4 max-[435px]:pb-4 pb-[60px]">
+        <div className="grid grid-cols-2  gap-[20px] px-[60px] max-[435px]:px-4 max-[435px]:gap-4 max-[435px]:pb-4 pb-[60px]">
           {firstFiveItem.map((item, index) => (
-            <CardManga
+            <CardRecentManga
               key={index}
               poster={item?.image_poster_link_goc || item?.poster_novel}
               title={item?.title_manga || item?.title_novel}
@@ -71,6 +78,16 @@ const ComicRecent = () => {
           ))}
         </div>
       )}
+      <div className="text-center font-semibold text-xl pb-3">
+        {visibleCount < comicRecent.length && (
+          <button
+            onClick={handleShowMore}
+            className=" text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg px-4 py-2 mt-4 transition-all duration-300"
+          >
+            More
+          </button>
+        )}
+      </div>
     </>
   );
 };

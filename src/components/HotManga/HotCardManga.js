@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-const LatestCardManga = ({
+const HotCardManga = ({
   poster,
   title,
   rate,
@@ -74,4 +74,4 @@ const LatestCardManga = ({
   );
 };
 
-export default LatestCardManga;
+export default HotCardManga;

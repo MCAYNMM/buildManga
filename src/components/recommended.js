@@ -10,7 +10,7 @@ const Recommended = () => {
   const [readMode, setReadMode] = useState(
     useSelector((state) => state.ReadMode.readmode)
   );
-  const firstFiveItem = recommendedComics.slice(0, 20);
+  const firstFiveItem = recommendedComics.slice(0, 16);
   return (
     <>
       {readMode === false ? (

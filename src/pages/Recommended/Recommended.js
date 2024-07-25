@@ -20,7 +20,7 @@ const Page_Recommended = () => {
         </div>
       </div>
       {readMode === false ? (
-        <div className="grid max-[768px]:grid-cols-3 pt-4 bg-black md:grid-cols-6 2xl:grid-cols-7  gap-[20px] px-[60px] max-[435px]:px-4 max-[435px]:gap-4 max-[435px]:pb-4 pb-[60px]">
+        <div className="grid max-[768px]:grid-cols-4 max-[600px]:grid-cols-3 max-[962px]:grid-cols-6 max-[1126px]:grid-cols-7 min-[1126px]:grid-cols-8 2xl:grid-cols-10  mx-[60px]  gap-[20px] max-[435px]:gap-4 max-[435px]:pb-4 pb-[60px]">
           {firstFiveItem.map((item, index) => (
             <CardManga
               key={index}

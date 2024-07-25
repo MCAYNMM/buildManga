@@ -2,12 +2,12 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Loading from "../Loading/Loading";
 import { useSwipeable } from "react-swipeable";
-import PopularCardManga from "./PopularCardManga";
+import HotCardManga from "./HotCardManga";
 import { useSelector } from "react-redux";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import styles from "./Popular.module.scss";
+import styles from "./HotManga.module.scss";
 
-const PopularManga = () => {
+const HotManga = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState([]);
   //   const [totalPage, setTotalPage] = useState(0);
@@ -43,7 +43,7 @@ const PopularManga = () => {
     try {
       if (currentPage <= totalPages) {
         const response1 = await axios.get(
-          `https://apimanga.mangasocial.online/${sv}/popular_manga/${page1}`
+          `https://apimanga.mangasocial.online/${sv}/hot_manga/${page1}`
         );
         //   response1.data.list_manga.map((manga) =>
         //     setData((prevData) => [...prevData, manga])
@@ -53,7 +53,7 @@ const PopularManga = () => {
         setTotalPages(totalPages);
         if (page2 <= totalPages) {
           const response2 = await axios.get(
-            `https://apimanga.mangasocial.online/${sv}/popular_manga/${page2}`
+            `https://apimanga.mangasocial.online/${sv}/hot_manga/${page2}`
           );
           setData((prevData) => [...prevData, ...response2.data.list_manga]);
         }
@@ -98,7 +98,7 @@ const PopularManga = () => {
       >
         {newRelease &&
           data.map((item, index) => (
-            <PopularCardManga
+            <HotCardManga
               key={index}
               poster={item?.image_poster_link_goc}
               title={item?.title_manga}
@@ -248,4 +248,4 @@ const PopularManga = () => {
   );
 };
 
-export default PopularManga;
+export default HotManga;

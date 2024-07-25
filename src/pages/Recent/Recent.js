@@ -1,9 +1,11 @@
 import React from "react";
 import CardManga from "../../components/cardManga";
 import useFetch from "../../hooks/useFetch";
+import { useSelector, useDispatch } from "react-redux";
 
 const Page_Recent = () => {
-  const comicRecent = useFetch(4);
+  let sv = useSelector((state) => state.server.sv);
+  const comicRecent = useFetch(sv);
 
   return (
     <div className="bg-black px-[60px] pb-[60px]">
@@ -12,7 +14,7 @@ const Page_Recent = () => {
           Recent Comic
         </h2>
       </div>
-      <div className="grid grid-cols-7 2xl:grid-cols-10 gap-[20px]">
+      <div className="grid max-[768px]:grid-cols-4 max-[600px]:grid-cols-3 max-[962px]:grid-cols-6 max-[1126px]:grid-cols-7 min-[1126px]:grid-cols-8 2xl:grid-cols-10  mx-[60px]  gap-[20px] max-[435px]:gap-4 max-[435px]:pb-4 pb-[60px]">
         {comicRecent.map((item, index) => (
           <CardManga
             key={index}

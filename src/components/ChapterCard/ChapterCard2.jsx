@@ -2,7 +2,15 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const ChapterCard2 = ({ chapter, title, poster, des, slug, chapterLink,chapterName }) => {
+const ChapterCard2 = ({
+  chapter,
+  title,
+  poster,
+  des,
+  slug,
+  chapterLink,
+  chapterName,
+}) => {
   // console.log("check link", chapterLink);
   const sv = useSelector((state) => state.server.sv);
   const readmode = useSelector((state) => state.ReadMode.readmode);
@@ -10,15 +18,15 @@ const ChapterCard2 = ({ chapter, title, poster, des, slug, chapterLink,chapterNa
   const chapterNumber = chapter?.replace(
     `http://apimanga.mangasocial.online/rmanga/${slug}/`,
     ""
-  );  
-  const chapterNumberReadMode = chapterLink
+  );
+  const chapterNumberReadMode = chapterLink;
   // console.log("chapter",chapterLink);
-   const getChapterFromUrl = (url) => {
-    const parts = url.split('/');
+  const getChapterFromUrl = (url) => {
+    const parts = url.split("/");
     return parts[parts.length - 1];
-   };
-   const getChapterFromUrl2 = (url) => {
-    const parts = url.split('/');
+  };
+  const getChapterFromUrl2 = (url) => {
+    const parts = url.split("/");
     return parts[parts.length - 2];
   };
   // console.log("check slug", chapterLink)
@@ -51,9 +59,9 @@ const ChapterCard2 = ({ chapter, title, poster, des, slug, chapterLink,chapterNa
             </div>
           </div>
           <div className="flex md:flex-row ps-8 items-start md:items-center justify-between w-full md:gap-0">
-            <div className="text-xl block text-center max-[480px]:hidden md:text-2  xl leading-5 md:leading-6 font-medium text-gray-300 w-full md:w-3/4 ">
+            {/* <div className="text-xl block text-center max-[480px]:hidden md:text-2  xl leading-5 md:leading-6 font-medium text-gray-300 w-full md:w-3/4 ">
               {truncatedDes}
-            </div>
+            </div> */}
             {user_id ? (
               <div className="text-sm md:text-2xl leading-5 md:leading-6 font-semibold text-[#ff9f66] w-full md:w-1/4 text-right">
                 Read
@@ -65,9 +73,9 @@ const ChapterCard2 = ({ chapter, title, poster, des, slug, chapterLink,chapterNa
             )}
           </div>
         </div>
-        <div className="text-xl hidden max-[480px]:block md:text-base leading-5 md:leading-6 font-medium text-gray-300 w-full">
+        {/* <div className="text-xl hidden max-[480px]:block md:text-base leading-5 md:leading-6 font-medium text-gray-300 w-full">
           {truncatedDes}
-        </div>
+        </div> */}
       </NavLink>
     </>
   );
