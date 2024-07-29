@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 const NovelCard2 = ({ poster, title, rate, update, chapter, path_segment }) => {
   const sv = useSelector((state) => state.server.sv);
-    const truncateTile = (title, maxLength) => {
-      if (title.length > maxLength) {
-        return `${title.slice(0, maxLength)}......`;
-      }
-      return title;
-    };
+  const truncateTile = (title, maxLength) => {
+    if (title.length > maxLength) {
+      return `${title.slice(0, maxLength)}......`;
+    }
+    return title;
+  };
   return (
     <NavLink to={`/${sv}/novel2/${path_segment}`}>
       <div className=" cursor-pointer">
@@ -34,7 +34,6 @@ const NovelCard2 = ({ poster, title, rate, update, chapter, path_segment }) => {
                 {chapter}
               </p>
             </NavLink>
-
           </div>
           <div className="flex items-center gap-[12px] max-[435px]:gap-2">
             <img

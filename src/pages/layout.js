@@ -78,16 +78,16 @@ export default function Layout() {
   //                                  1    "https://ww5.manganelo.tv",
   //                                  0    "https://www.mangainn.net",
   const serverName = [
-    {
-      sv: 0,
-      name: "mangainn.net",
-      icon: (
-        <US
-          title="Vietnamese"
-          className="max-[480px]:h-5 max-[480px]:w-5 h-5 w-5 "
-        />
-      ),
-    },
+    // {
+    //   sv: 0,
+    //   name: "mangainn.net",
+    //   icon: (
+    //     <US
+    //       title="Vietnamese"
+    //       className="max-[480px]:h-5 max-[480px]:w-5 h-5 w-5 "
+    //     />
+    //   ),
+    // },
     {
       sv: 1,
       name: "ww5.manganelo.tv",
@@ -98,16 +98,16 @@ export default function Layout() {
         />
       ),
     },
-    {
-      sv: 2,
-      name: "mangareader.cc",
-      icon: (
-        <JP
-          title="Vietnamese"
-          className="max-[480px]:h-5 max-[480px]:w-5 h-5 w-5"
-        />
-      ),
-    },
+    // {
+    //   sv: 2,
+    //   name: "mangareader.cc",
+    //   icon: (
+    //     <JP
+    //       title="Vietnamese"
+    //       className="max-[480px]:h-5 max-[480px]:w-5 h-5 w-5"
+    //     />
+    //   ),
+    // },
     {
       sv: 3,
       name: "ninemanga.com",
@@ -138,16 +138,16 @@ export default function Layout() {
         />
       ),
     },
-    {
-      sv: 6,
-      name: "mangakomi.io",
-      icon: (
-        <US
-          title="Vietnamese"
-          className="max-[480px]:h-5 max-[480px]:w-5 h-5 w-5"
-        />
-      ),
-    },
+    // {
+    //   sv: 6,
+    //   name: "mangakomi.io",
+    //   icon: (
+    //     <US
+    //       title="Vietnamese"
+    //       className="max-[480px]:h-5 max-[480px]:w-5 h-5 w-5"
+    //     />
+    //   ),
+    // },
     {
       sv: 7,
       name: "readm.org",
@@ -183,26 +183,26 @@ export default function Layout() {
         />
       ),
     },
-    {
-      sv: 11,
-      name: "novelhall.com",
-      icon: (
-        <JP
-          title="Vietnamese"
-          className="max-[480px]:h-5 max-[480px]:w-5 h-5 w-5"
-        />
-      ),
-    },
-    {
-      sv: 12,
-      name: "mto.com",
-      icon: (
-        <JP
-          title="Vietnamese"
-          className="max-[480px]:h-5 max-[480px]:w-5 h-5 w-5"
-        />
-      ),
-    },
+    // {
+    //   sv: 11,
+    //   name: "novelhall.com",
+    //   icon: (
+    //     <JP
+    //       title="Vietnamese"
+    //       className="max-[480px]:h-5 max-[480px]:w-5 h-5 w-5"
+    //     />
+    //   ),
+    // },
+    // {
+    //   sv: 12,
+    //   name: "mto.com",
+    //   icon: (
+    //     <JP
+    //       title="Vietnamese"
+    //       className="max-[480px]:h-5 max-[480px]:w-5 h-5 w-5"
+    //     />
+    //   ),
+    // },
     {
       sv: 13,
       name: "de.ninemanga.com",
@@ -263,16 +263,16 @@ export default function Layout() {
         />
       ),
     },
-    {
-      sv: 19,
-      name: "azoranov.com/series/",
-      icon: (
-        <US
-          title="Vietnamese"
-          className="max-[480px]:h-5 max-[480px]:w-5 h-5 w-5"
-        />
-      ),
-    },
+    // {
+    //   sv: 19,
+    //   name: "azoranov.com/series/",
+    //   icon: (
+    //     <US
+    //       title="Vietnamese"
+    //       className="max-[480px]:h-5 max-[480px]:w-5 h-5 w-5"
+    //     />
+    //   ),
+    // },
   ];
 
   const dispatch = useDispatch();
@@ -447,6 +447,13 @@ export default function Layout() {
     setShowMenu(show);
     console.log(showMenu);
   };
+  const handleNavigateClickLogo = () => {
+    if (sv == 4) {
+      navigate(`/` + sv + "/novel");
+    } else {
+      navigate(`/` + sv);
+    }
+  };
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -461,7 +468,7 @@ export default function Layout() {
       <div className="flex px-3 items-center justify-between py-4 bg-gray-800  max-[480px]:hidden ">
         <div className="flex items-center space-x-2 group-hover:text-red-700 ">
           <div
-            onClick={() => navigate(`/` + sv)}
+            onClick={() => handleNavigateClickLogo()}
             className="title inline-flex justify-start items-center text-white space-x-2 cursor-pointer"
           >
             <img

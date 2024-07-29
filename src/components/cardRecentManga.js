@@ -21,6 +21,7 @@ const CardRecentManga = ({
     const parts = url.split("/");
     return parts[parts.length - 1];
   };
+
   const getChapterFromUrl2 = (url) => {
     const parts = url.split("/");
     return parts[parts.length - 2];
@@ -34,7 +35,10 @@ const CardRecentManga = ({
 
   // console.log("check link", chapterNumberReadMode);
   return (
-    <NavLink to={`/${sv}/chapter/${path_segment}`} className="w-50% flex gap-2">
+    <NavLink
+      to={`/${sv}/chapter/${path_segment}`}
+      className="w-50% border-b pb-2 hover:border-b2 border-white flex gap-2 "
+    >
       <img
         className="h-[190px] w-[120px] object-cover transition-transform duration-500 group-hover:scale-110 rounded-[12px]"
         src={poster}
@@ -59,7 +63,9 @@ const CardRecentManga = ({
             </div>
           </div>
         )} */}
-        <p className="font-semibold truncate w-[70%]">{categories}</p>
+        <p className="font-semibold truncate w-[70%]">
+          Categories: {truncateTile(categories, 20)}
+        </p>
         <p className="text-[#cccbcb] font-sm">Last Update: {update}</p>
         <NavLink
           // to={`

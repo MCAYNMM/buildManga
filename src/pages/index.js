@@ -38,13 +38,13 @@ export default function Index() {
   //   }, 1000);
   // }, []);
   return (
-    <div className="cont">
+    <div className="pt-3 cont">
       {/* <CustomizeSpin /> */}
 
-      <div className="mx-10 max-[435px]:px-4 mb-3 pt-4">
-        <div className="max-[480px]:!text-2xl  text-5xl max-[738px]:text-[34px]  max-[480px]:relative text-white font-semibold">
+      <div className="mx-10 max-[435px]:px-4 mb-3 pt-[80px]">
+        <div className="max-[480px]:!text-2xl  text-5xl max-[738px]:text-[34px]  relative text-white font-semibold">
           Latest Manga Release
-          <div className="hidden max-[480px]:block w-[100px] h-[7px] bg-[#F45F17] -top-[40%] rounded-[35px] left-0 absolute "></div>
+          <div className=" w-[100px] h-[7px] bg-[#F45F17] -top-[40%] rounded-[35px] left-0 absolute "></div>
         </div>
       </div>
       <LatestManga key={readmode} />
@@ -58,10 +58,10 @@ export default function Index() {
       sv == 17 ||
       sv == 18 ? (
         <>
-          <div className="mx-10 max-[435px]:px-4 mb-3 pt-4">
-            <div className="max-[480px]:!text-2xl  text-5xl max-[738px]:text-[34px]  max-[480px]:relative text-white font-semibold">
+          <div className="mx-10 max-[435px]:px-4 mb-3 pt-[80px]">
+            <div className="max-[480px]:!text-2xl  text-5xl max-[738px]:text-[34px] text-white relative font-semibold">
               Hot Manga
-              <div className="hidden max-[480px]:block w-[100px] h-[7px] bg-[#F45F17] -top-[40%] rounded-[35px] left-0 absolute "></div>
+              <div className=" w-[100px] h-[7px] bg-[#F45F17] -top-[40%] rounded-[35px] left-0 absolute "></div>
             </div>
           </div>
           <HotManga />
@@ -72,10 +72,10 @@ export default function Index() {
 
       {sv == 12 || sv == 2 || sv == 19 ? (
         <>
-          <div className="mx-10 max-[435px]:px-4 mb-3 pt-4">
-            <div className="max-[480px]:!text-2xl  text-5xl max-[738px]:text-[34px]  max-[480px]:relative text-white font-semibold">
+          <div className="mx-10 max-[435px]:px-4 mb-3 pt-[80px]">
+            <div className="max-[480px]:!text-2xl  text-5xl max-[738px]:text-[34px]  relative text-white font-semibold">
               Popular Manga
-              <div className="hidden max-[480px]:block w-[100px] h-[7px] bg-[#F45F17] -top-[40%] rounded-[35px] left-0 absolute "></div>
+              <div className=" w-[100px] h-[7px] bg-[#F45F17] -top-[40%] rounded-[35px] left-0 absolute "></div>
             </div>
           </div>
           <PopularManga />
@@ -84,20 +84,20 @@ export default function Index() {
         ""
       )}
 
-      <div className=" px-10 py-10 max-[480px]:px-4">
-        <div className="max-[480px]:!text-2xl  text-5xl max-[738px]:text-[34px] max-[480px]:relative text-white font-semibold">
+      <div className=" mx-10 max-[435px]:px-4 mb-3 pt-[80px]">
+        <div className="max-[480px]:!text-2xl  text-5xl max-[738px]:text-[34px] relative text-white font-semibold">
           Recommended Comics
-          <div className="hidden max-[480px]:block w-[100px] h-[7px] bg-[#F45F17] -top-[40%] rounded-[35px] left-0 absolute "></div>
+          <div className=" w-[100px] h-[7px] bg-[#F45F17] -top-[40%] rounded-[35px] left-0 absolute "></div>
         </div>
         {/* <Link to={`/${sv}/recommended`}>
           <p className="max-[480px]:!text-xl">See all</p>
         </Link> */}
       </div>
       <Recommended />
-      <div className="mx-10 max-[435px]:px-4 mb-3 pt-10">
-        <div className="max-[480px]:!text-2xl  text-5xl max-[738px]:text-[34px] max-[480px]:relative text-white font-semibold">
+      <div className="mx-10 max-[435px]:px-4 mb-3 pt-[80px]">
+        <div className="max-[480px]:!text-2xl  text-5xl max-[738px]:text-[34px] relative text-white font-semibold">
           Recent Manga
-          <div className="hidden max-[480px]:block w-[100px] h-[7px] bg-[#F45F17] -top-[40%] rounded-[35px] left-0 absolute "></div>
+          <div className=" w-[100px] h-[7px] bg-[#F45F17] -top-[40%] rounded-[35px] left-0 absolute "></div>
         </div>
         {/* <Link to={`/${sv}/recent`}>
           <p className="max-[480px]:!text-xl">See all</p>
@@ -106,9 +106,9 @@ export default function Index() {
       <ComicRecent></ComicRecent>
 
       {/* <div className="title-released-comic  max-[480px]:px-4">
-        <div className="max-[480px]:!text-2xl  text-5xl max-[738px]:text-[34px] max-[480px]:relative text-white font-semibold">
+        <div className="max-[480px]:!text-2xl  text-5xl max-[738px]:text-[34px] relative text-white font-semibold">
           Comming Soon Comics
-          <div className="hidden max-[480px]:block w-[100px] h-[7px] bg-[#F45F17] -top-[40%] rounded-[35px] left-0 absolute "></div>
+          <div className=" w-[100px] h-[7px] bg-[#F45F17] -top-[40%] rounded-[35px] left-0 absolute "></div>
         </div>
         <Link to={`/${sv}/commingsoon`}>
           <p className="max-[480px]:!text-xl">See all</p>

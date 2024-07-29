@@ -11,6 +11,7 @@ const Recommended = () => {
     useSelector((state) => state.ReadMode.readmode)
   );
   const firstFiveItem = recommendedComics.slice(0, 16);
+  
   return (
     <>
       {readMode === false ? (

@@ -43,7 +43,7 @@ const HotManga = () => {
     try {
       if (currentPage <= totalPages) {
         const response1 = await axios.get(
-          `https://apimanga.mangasocial.online/${sv}/hot_manga/${page1}`
+          `https://apimanga.mangasocial.online/${sv}/manga/hot_manga/${page1}`
         );
         //   response1.data.list_manga.map((manga) =>
         //     setData((prevData) => [...prevData, manga])
@@ -53,7 +53,7 @@ const HotManga = () => {
         setTotalPages(totalPages);
         if (page2 <= totalPages) {
           const response2 = await axios.get(
-            `https://apimanga.mangasocial.online/${sv}/hot_manga/${page2}`
+            `https://apimanga.mangasocial.online/${sv}/manga/hot_manga/${page2}`
           );
           setData((prevData) => [...prevData, ...response2.data.list_manga]);
         }
