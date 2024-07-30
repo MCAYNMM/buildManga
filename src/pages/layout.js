@@ -448,12 +448,20 @@ export default function Layout() {
     console.log(showMenu);
   };
   const handleNavigateClickLogo = () => {
-    if (sv == 4) {
-      navigate(`/` + sv + "/novel");
-    } else {
+    if (sv != 4) {
       navigate(`/` + sv);
+    } else {
+      navigate(`/` + sv + "/novel");
     }
   };
+
+  useEffect(() => {
+    if (sv != 4) {
+      navigate(`/` + sv);
+    } else {
+      navigate(`/` + sv + "/novel");
+    }
+  }, []);
 
   const closeModal = () => {
     setIsModalOpen(false);

@@ -9,7 +9,7 @@ const CMT = (props) => {
     console.log(viewReply);
   };
 
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
   const maxHeight = 100;
   const isLong = cmt.content.length > maxHeight;
   const truncate =
@@ -30,14 +30,18 @@ const CMT = (props) => {
             <strong className="text-white">{cmt?.name_user}</strong>{" "}
             <span className="text-xs text-white">{cmt?.time_comment}</span>
             <p className={`text-lg text-white w-full overflow-hidden `}>
-              {isExpanded ? truncate : cmt?.content}
+              {cmt.content.length > 100
+                ? !isExpanded
+                  ? truncate
+                  : cmt?.content
+                : cmt?.content}
             </p>
             {isLong && (
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
                 className=" bg-blue-500 text-white px-2 py-1 text-sm rounded"
               >
-                {isExpanded ? "Show More" : "Show Less"}
+                {isExpanded ? "Show Less" : "Show More"}
               </button>
             )}
             <div className="mt-4 flex items-center gap-3">

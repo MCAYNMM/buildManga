@@ -26,6 +26,10 @@ const LatestCardManga = ({
     return parts[parts.length - 1];
   };
 
+  const path_segment2 = path_segment.endsWith("/")
+    ? path_segment.sclice(0, -1)
+    : path_segment;
+
   const chapterUrl1 = chapterLink.endsWith("/")
     ? chapterLink.slice(0, -1).split("/")
     : chapterLink.split("/");
@@ -55,7 +59,7 @@ const LatestCardManga = ({
         sv === 4 || sv === 11
           ? `${chapterNumberReadMode === "" ? "chapter" : "novel"}`
           : "chapter"
-      }/${path_segment}`}
+      }/${path_segment2}`}
       className={` border-b h-[auto] mt-3 mx-3 w-[1/7] inline-block pb-2 border-white border-opacity-25 justify-between`}
     >
       {/* <div className="flex text-white w-ful gap-4 justify-start">

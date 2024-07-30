@@ -56,6 +56,9 @@ const LatestNovel = () => {
     setRangePagination(false);
     setCurrentPage(clickPageNumber);
   };
+
+  console.log("sssssssssssss", listNovel);
+
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
@@ -79,11 +82,47 @@ const LatestNovel = () => {
   return (
     // <></>
     <>
-      <div className="">
-        {listNovel &&
-          listNovel.list_manga.map((item, index) => {
-            console.log("listNovelllll", item);
-          })}
+      <div className="grid grid-cols-2 max-[500px]:grid-cols-1 gap-4 mx-10">
+        {loading ? (
+          <div className="col-span-2 flex justify-center items-center">
+            <Loading
+              type={"spin"}
+              color={"#FF9F66"}
+              height={300}
+              width={300}
+              text="Loading..."
+            />
+          </div>
+        ) : (
+          listNovel &&
+          listNovel.list_manga.map((item, index) => (
+            <LatestCardNovel
+              key={index}
+              poster={item?.image_poster_link_goc}
+              title={item?.title_manga}
+              rate={item?.rate}
+              update={item.time_release}
+              chapter={item.chapter_new || item.chaper_new}
+              chapterLink={item.url_chapter}
+              path_segment={
+                item?.path_segment_manga
+                  ? item?.path_segment_manga
+                  : (item?.url_manga && sv === 4) ||
+                    sv === 9 ||
+                    sv === 11 ||
+                    sv === 12
+                  ? item?.url_manga.replace(
+                      "https://apimanga.mangasocial.online/rnovel/",
+                      ""
+                    )
+                  : item?.url_manga.replace(
+                      "https://apimanga.mangasocial.online/rmanga/",
+                      ""
+                    )
+              }
+            />
+          ))
+        )}
       </div>
       <div className="flex mt-5 justify-center">
         <button
