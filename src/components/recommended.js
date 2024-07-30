@@ -11,7 +11,7 @@ const Recommended = () => {
     useSelector((state) => state.ReadMode.readmode)
   );
   const firstFiveItem = recommendedComics.slice(0, 16);
-  
+
   return (
     <>
       {readMode === false ? (
@@ -58,13 +58,16 @@ const Recommended = () => {
               path_segment={
                 item?.path_segment_manga
                   ? item?.path_segment_manga
-                  : item?.url_manga
+                  : (item?.url_manga && sv === 4) ||
+                    sv === 9 ||
+                    sv === 11 ||
+                    sv === 12
                   ? item?.url_manga.replace(
-                      "https://apimanga.mangasocial.online/rmanga/",
+                      "https://apimanga.mangasocial.online/rnovel/",
                       ""
                     )
-                  : item.link_server_novel.replace(
-                      `https://apimanga.mangasocial.online/web/rnovel/${sv}/`,
+                  : item?.url_manga.replace(
+                      "https://apimanga.mangasocial.online/rmanga/",
                       ""
                     )
               }

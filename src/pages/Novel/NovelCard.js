@@ -2,16 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-
-
 const NovelCard = ({ poster, title, rate, update, chapter, path_segment }) => {
   const sv = useSelector((state) => state.server.sv);
-    const truncateTile = (title, maxLength) => {
-      if (title.length > maxLength) {
-        return `${title.slice(0, maxLength)}......`;
-      }
-      return title;
-    };
+  const truncateTile = (title, maxLength) => {
+    if (title.length > maxLength) {
+      return `${title.slice(0, maxLength)}......`;
+    }
+    return title;
+  };
   return (
     <NavLink to={`/${sv}/chapter/${path_segment}`}>
       <div className=" cursor-pointer">
